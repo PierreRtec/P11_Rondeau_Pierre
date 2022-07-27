@@ -1,0 +1,29 @@
+from assertpy import assert_that
+
+
+class TestShowSummary:
+    def test_show_summary_unknown_email_address(
+            self,
+            client,
+    ):
+        # expectations
+        expected_status_code = 200
+
+        # method_call
+        result = client.post('/showSummary', data={"email": "unknown@random.com"})
+
+        # assertions
+        assert_that(result.status_code).is_equal_to(expected_status_code)
+
+    def test_show_summary_unknown_email_address_not_found(
+            self,
+            client,
+    ):
+        # initialisation
+        email_not_found = "Sorry, that email wasn&#39;t found. Try again."
+
+        # method_call
+        result = client.post('/showSummary', data={"email": "unkezezanown@zae.com"})
+
+        # assertions
+        assert_that(result.data.decode()).contains(email_not_found)
