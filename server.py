@@ -62,7 +62,7 @@ def purchasePlaces():
     clubPoints = int(club["points"])
     if placesRequired <= 0:
         flash("Ne peut être inférieur ou égal à 0")
-    elif placesRequired >= placesCompetition:
+    elif placesRequired > placesCompetition:
         flash(
             "Attention, vous avez selectionner plus de places que le nombre de place maximum."
         )
