@@ -53,14 +53,18 @@ def book(competition, club):
 
 @app.route("/purchasePlaces", methods=["POST"])
 def purchasePlaces():
-    competition = [c for c in competitions if c["name"] == request.form["competition"]][0]
+    competition = [c for c in competitions if c["name"] == request.form["competition"]][
+        0
+    ]
     club = [c for c in clubs if c["name"] == request.form["club"]][0]
     placesRequired = int(request.form["places"])
     placesCompetition = int(competition["numberOfPlaces"])
     if placesRequired < 0:
         flash("Ne peut être égal ou inférieur à 0")
     elif placesRequired >= placesCompetition:
-        flash("Attention, vous avez selectionner plus de places que le nombre de place maximum.")
+        flash(
+            "Attention, vous avez selectionner plus de places que le nombre de place maximum."
+        )
     else:
         competition["numberOfPlaces"] = placesCompetition - placesRequired
     flash("Great-booking complete!")
