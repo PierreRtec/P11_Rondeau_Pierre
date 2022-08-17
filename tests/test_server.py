@@ -71,6 +71,27 @@ class TestPurchasePlaces:
         # assertions
         assert_that(result.status_code).is_equal_to(expected_status_code)
 
+    def test_purchase_places_pts_club_nominal(self, client):
+        # initialisation
+        competition = server.competitions[1]
+        club = server.clubs[2]
+        # expectations
+        expected_status_code = 200
+
+        # method_call
+        result = client.post(
+            "/purchasePlaces",
+            data={
+                "competition": competition["name"],
+                "club": club["name"],
+                "places": 12,
+                "points": 4,
+            },
+        )
+
+        # assertions
+        assert_that(result.status_code).is_equal_to(expected_status_code)
+
 
 class TestBook:
     def test_book_nominal_date(self, client):
