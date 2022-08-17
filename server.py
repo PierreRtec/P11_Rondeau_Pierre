@@ -59,11 +59,13 @@ def purchasePlaces():
     placesCompetition = int(competition["numberOfPlaces"])
     if placesRequired < 0:
         flash("Ne peut être égal ou inférieur à 0")
+    elif placesRequired > 12:
+        flash("Vous ne pouvez pas réserver plus de 12 places à la fois.")
     elif placesRequired >= placesCompetition:
         flash("Attention, vous avez selectionner plus de places que le nombre de place maximum.")
     else:
         competition["numberOfPlaces"] = placesCompetition - placesRequired
-    flash("Great-booking complete!")
+        flash("Great-booking complete!")
     return render_template("welcome.html", club=club, competitions=competitions)
 
 
