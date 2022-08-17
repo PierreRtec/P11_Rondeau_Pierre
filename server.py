@@ -74,20 +74,20 @@ def purchasePlaces():
         flash(
             "Attention, vous avez selectionner plus de places que le nombre de place maximum."
         )
-    elif clubPoints < placesRequired*3:
+    elif clubPoints < placesRequired:
         flash("Vous n'avez pas assez de points")
     else:
         competition["numberOfPlaces"] = placesCompetition - placesRequired
-        club["points"] = int(club["points"]) - placesRequired*3
-        flash("Réservation réalisée!")
+        club['points'] = int(club['points']) - placesRequired
+        flash("Great-booking complete!")
     return render_template(
         "welcome.html", club=club, competitions=competitions, date=actual_date
     )
 
 
-@app.route("/displayboard")
+@app.route('/displayboard')
 def club_table():
-    return render_template("displayboard.html", clubs=clubs)
+    return render_template('displayboard.html', clubs=clubs)
 
 
 @app.route("/logout")
