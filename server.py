@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+
 from flask import Flask, flash, redirect, render_template, request, url_for
 
 
@@ -68,12 +69,12 @@ def purchasePlaces():
     clubPoints = int(club["points"])
     if placesRequired <= 0:
         flash("Ne peut être inférieur ou égal à 0")
-    elif placesRequired > 12:
-        flash("Vous ne pouvez pas réserver plus de 12 places à la fois.")
     elif placesRequired > placesCompetition:
         flash(
             "Attention, vous avez selectionner plus de places que le nombre de place maximum."
         )
+    elif placesRequired > 12:
+        flash("Vous ne pouvez pas réserver plus de 12 places à la fois.")
     elif clubPoints < placesRequired:
         flash("Vous n'avez pas assez de points")
     else:
