@@ -75,7 +75,7 @@ def purchasePlaces():
         )
     elif placesRequired > 12:
         flash("Vous ne pouvez pas réserver plus de 12 places à la fois.")
-    elif clubPoints < placesRequired*3:
+    elif clubPoints < placesRequired:
         flash("Vous n'avez pas assez de points")
     else:
         competition["numberOfPlaces"] = placesCompetition - placesRequired
